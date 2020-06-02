@@ -11,9 +11,9 @@ def log(filename):
             stop = time()
 
             with open(filename, 'w') as fh:
-                fh.write(f'Execution time: {((stop - start) * 1000):.3f} ms\n')
+                fh.write(f'Execution time: {((stop - start) * 1000):.3f} s\n')
 
-                if isinstance(result, list):
+                if isinstance(result, list):  # only iterable option for the project
                     res = '\n'.join('Result[{}]: {:.3f}'.format(i, v) for i, v in enumerate(result))
                 else:
                     res = f'Result: {result:.5f}'
