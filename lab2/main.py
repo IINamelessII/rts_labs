@@ -1,5 +1,7 @@
 """Fourier Transforms"""
 
+from time import time
+
 import numpy as np
 from matplotlib import pyplot
 
@@ -36,11 +38,20 @@ def fft(signals):
 
 if __name__ == '__main__':
 
-	# Calculations
 	x = random_signal()
-	x_dft = dft(x)
-	x_fft = fft(x)
 	y = np.linspace(0, 5, N)
+
+	# DFT
+	t1 = time()
+	x_dft = dft(x)
+	t2 = time()
+	print(f'Execution time (DFT): {(t2 - t1) * 1000} ms')
+
+	# DFT
+	t1 = time()
+	x_fft = fft(x)
+	t2 = time()
+	print(f'Execution time (FFT): {(t2 - t1) * 1000} ms')
 
 	# Init plots
 	chart_signal, chart_DFT, chart_FFT = pyplot.subplots(3, 1, figsize=(16, 9))[1]
