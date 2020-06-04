@@ -5,7 +5,7 @@ from itertools import combinations
 from random import sample, randint
 
 
-def diophantine(*coefficients, y, population_size=5):
+def diophantine(*coefficients, coeff=1, y, population_size=5):
 	if len(coefficients) != 4:
 		raise Exception(
 			'Please, enter proper amount of coefficients or leave blank to generate randomly'
@@ -38,7 +38,7 @@ def diophantine(*coefficients, y, population_size=5):
 				old_population = new_population
 				total_crossovers += 1
 			else:
-				old_population = mutated(old_population, y, total_mutations)
+				old_population = mutated(old_population, y, total_mutations, coeff)
 				total_mutations += 1
 
 
@@ -69,7 +69,7 @@ def crossover(population, population_size, scores):
 	return new_population
 
 
-def mutated(population, goal, mutation_index):
+def mutated(population, goal, mutation_index, coeff):
 	mutated_population = []
 	for roots in population:
 		mutated_roots = roots
@@ -77,7 +77,7 @@ def mutated(population, goal, mutation_index):
 			[i for i in range(len(roots))], 1 + round(3 * mutation_index / 150)
 		)
 		for index in mutation_indexes:
-			mutated_roots[index] = mutated_roots[index] + randint(-goal // 4, +goal // 4)
+			mutated_roots[index] = int((mutated_roots[index] + randint(-goal // 4, +goal // 4)) * coeff)
 
 		mutated_population.append(mutated_roots)
 
@@ -101,10 +101,13 @@ def output_result(roots, coefficients):
 
 
 if __name__ == '__main__':
+
+	coeff = float(input('Mutation coeff: '))
+
 	coefficients = [randint(-10, 10) for i in range(4)]
 
 	start = datetime.now()
-	final_result, crossovers_num, mutate_num = diophantine(*coefficients, y=100)
+	final_result, crossovers_num, mutate_num = diophantine(*coefficients, coeff=coeff, y=100)
 	finish = datetime.now()
 
 	output_result(final_result, coefficients)

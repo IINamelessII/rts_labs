@@ -1,17 +1,18 @@
 Example of executing (was copied from output buffer):
 
 ```
-Equation is: 6x1 + 7x2 + x3 + x4 = 100
+Mutation coeff: 0.777
+Equation is: x1 + 5x2 + 3x3 + x4 = 100
 
 Answer is:
- x1 = 27
- x2 = 41
- x3 = 42
- x4 = 11
+ x1 = 34
+ x2 = 31
+ x3 = 27
+ x4 = 7
 
-6*27 + 7*41 + -7*42 + -5*11 + = 162 + 287 + -294 + -55 + = 100
+-4*34 + 5*31 + 3*27 + 0*7 + = -136 + 155 + 81 + 0 + = 100
 
-Algorithm execution time: 4837mcs
-Crossovers executed: 105
-Mutations executed: 62
+Algorithm execution time: 9983mcs
+Crossovers executed: 92
+Mutations executed: 36
 ```
